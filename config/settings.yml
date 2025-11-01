@@ -1,0 +1,13 @@
+use_default_settings: true
+
+server:
+  bind_address: "0.0.0.0"
+  port: 8080
+  # any non-empty, non-default string is fine for local dev
+  secret_key: "local-dev-only-2b6f45f0a1a64c0b9e7ef1d6e6f8f2b1"
+
+search:
+  formats:
+    - html
+    - json
+
