@@ -28,3 +28,8 @@ docker run --name xngllamasearch-cont -d \
 ```
 
 - add your keys and llama.cpp compatible gguf in the MODEL e-var, from huggingface with the quant as shown
+
+- using:
+  - [Llama.cpp](https://github.com/ggml-org/llama.cpp/releases/tag/b6912)
+  - [bplus-search](https://github.com/mrhappynice/bplus-search)
+  - [SearXNG](https://github.com/searxng/searxng)
