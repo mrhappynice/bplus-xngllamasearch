@@ -36,6 +36,7 @@ RUN set -euo pipefail \
 COPY docker/uwsgi.ini /usr/local/searxng/dockerfiles/uwsgi.ini
 COPY docker/entrypoint.sh /usr/local/searxng/entrypoint.sh
 COPY docker/exes/ /usr/local/bin/
+COPY config/ /etc/searxng/
 
 VOLUME ["/etc/searxng", "/var/cache/searxng"]
 
