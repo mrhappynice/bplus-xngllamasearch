@@ -1,0 +1,32 @@
+{
+  "name": "xngllamasearch (Codespaces)",
+  "image": "mrhappynice/bplus-xngllamasearch:latest",
+
+  // Expose the same ports your docker run mapped
+  "forwardPorts": [8080, 3001],
+
+  // Bind the repo folders into the paths your container expects
+  "mounts": [
+    "source=${localWorkspaceFolder}/config,target=/etc/searxng,type=bind,consistency=cached",
+    "source=${localWorkspaceFolder}/data,target=/var/cache/searxng,type=bind,consistency=cached"
+  ],
+
+  // Inline (non-secret) env vars, as requested
+  "containerEnv": {
+    "INSTANCE_NAME": "SearXNG",
+    "BASE_URL": "http://localhost:8080/",
+    "SEARXNG_URL": "http://127.0.0.1:8080",
+    "AUTH_USERNAME": "",
+    "AUTH_PASSWORD": "",
+    "OPENAI_API_BASE": "http://localhost:1234/v1",
+    "LMSTUDIO_API_BASE": "http://localhost:1234/v1",
+    "MODEL": "unsloth/Qwen3-0.6B-GGUF:Q8_0"
+  }
+
+  // (Optional) if you truly want to set keys here, add them—but note they'll live in the repo history
+  // "features": {} // add devcontainer features if you want extra tools installed
+
+  // Ensure the container’s default CMD starts the app.
+  // If your image needs a kick, uncomment the next line to start it after attach:
+  // "postStartCommand": "supervisorctl restart all || true"
+}
