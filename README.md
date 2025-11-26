@@ -1,13 +1,12 @@
 # bplus🤷🏻‍♂️ XNGllamasearch
 
---- 
-Private local search with SearXNG, Custom bplus-search app(search without MCP), and llama.cpp to run any models in the single container. Vulkan backend, this script ready for AMD/Intel with Vulkan drivers installed. 
+Private local search with SearXNG, Custom bplus-search app(search without MCP), and llama.cpp to run any models in the single container. Vulkan backend, this script ready for AMD/Intel with Vulkan drivers installed.  
 
-- run.sh:
+### Quick Start🏁
+- local-run.sh:
 ```sh
 docker run --name xngllamasearch-cont -d \
-  -p 8080:8080 \
-  -p 3001:3001 \
+  --network host \
   --device=/dev/dri \
   --group-add video \
   -v "$PWD/config:/etc/searxng" \
@@ -23,6 +22,7 @@ docker run --name xngllamasearch-cont -d \
   -e OPENROUTER_API_KEY="sk-oxxxxr-xx-xxxx" \
   -e GOOGLE_API_KEY="xxxxx" \
   -e MODEL="bartowski/Llama-3.2-1B-Instruct-GGUF:Q4_K_M" \
+  -e USE_NATIVE=1 \
   mrhappynice/bplus-xngllamasearch 
 
 ```
@@ -30,6 +30,6 @@ docker run --name xngllamasearch-cont -d \
 - add your keys and llama.cpp compatible gguf in the MODEL e-var, from huggingface with the quant as shown
 
 - using:
-  - [Llama.cpp](https://github.com/ggml-org/llama.cpp/releases/tag/b6912)
-  - [bplus-search](https://github.com/mrhappynice/bplus-search)
+  - [Llama.cpp](https://github.com/ggml-org/llama.cpp)
+  - [bplus-searchrs](https://github.com/mrhappynice/bplus-searchrs)
   - [SearXNG](https://github.com/searxng/searxng)
