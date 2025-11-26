@@ -65,7 +65,9 @@ gosu searxng:searxng uwsgi \
   --virtualenv /usr/local/searxng/venv \
   --http-socket "${BIND_ADDRESS}" \
   --ini "${UWSGI_SETTINGS_PATH}" &
-  
+
+cd /usr/local/bin/  
 llama-server -hf "$MODEL" -ngl 999 --ctx-size 8000 --port 1234 &
 sleep 5
-exec bplus-search
+exec bplus-search &
+exec bplus-launcher
