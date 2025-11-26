@@ -1,17 +1,15 @@
 {
-  "name": "xngllamasearch (Codespaces)",
-  "image": "mrhappynice/bplus-xngllamasearch:latest",
-
-  // Expose the same ports your docker run mapped
-  "forwardPorts": [8080, 3001],
-
-  // Bind the repo folders into the paths your container expects
-  "mounts": [
-    "source=${localWorkspaceFolder}/config,target=/etc/searxng,type=bind,consistency=cached",
-    "source=${localWorkspaceFolder}/data,target=/var/cache/searxng,type=bind,consistency=cached"
+  "name": "xngllamasearch-dev",
+  "image": "mrhappynice/bplus-xngllamasearch",
+  "runArgs": [
+    "--network=host",
+    "--device=/dev/dri",
+    "--group-add=video"
   ],
-
-  // Inline (non-secret) env vars, as requested
+  "mounts": [
+    "source=${localWorkspaceFolder}/config,target=/etc/searxng,type=bind",
+    "source=${localWorkspaceFolder}/data,target=/var/cache/searxng,type=bind"
+  ],
   "containerEnv": {
     "INSTANCE_NAME": "SearXNG",
     "BASE_URL": "http://localhost:8080/",
@@ -20,13 +18,13 @@
     "AUTH_PASSWORD": "",
     "OPENAI_API_BASE": "http://localhost:1234/v1",
     "LMSTUDIO_API_BASE": "http://localhost:1234/v1",
-    "MODEL": "unsloth/Qwen3-0.6B-GGUF:Q8_0"
-  }
-
-  // (Optional) if you truly want to set keys here, add them—but note they'll live in the repo history
-  // "features": {} // add devcontainer features if you want extra tools installed
-
-  // Ensure the container’s default CMD starts the app.
-  // If your image needs a kick, uncomment the next line to start it after attach:
-  // "postStartCommand": "supervisorctl restart all || true"
+    "OPENAI_API_KEY": "sk-proj-xxxxx-x-x-x-hwA",
+    "OPENROUTER_API_KEY": "sk-oxxxxr-xx-xxxx",
+    "GOOGLE_API_KEY": "xxxxx",
+    "MODEL": "bartowski/Llama-3.2-1B-Instruct-GGUF:Q4_K_M",
+    "USE_NATIVE": "1"
+  },
+  "remoteUser": "root",
+  "forwardPorts": [8080],
+  "postCreateCommand": "echo '✅ Loaded - connect to launcher http://localhost:5660'"
 }
