@@ -1,5 +1,5 @@
 docker run --name xngllamasearch-cont -d \
-  --network host
+  --network host \
   --device=/dev/dri \
   --group-add video \
   -v "$PWD/config:/etc/searxng" \
@@ -15,4 +15,5 @@ docker run --name xngllamasearch-cont -d \
   -e OPENROUTER_API_KEY="sk-oxxxxr-xx-xxxx" \
   -e GOOGLE_API_KEY="xxxxx" \
   -e MODEL="bartowski/Llama-3.2-1B-Instruct-GGUF:Q4_K_M" \
+  -e USE_NATIVE=1 \
   mrhappynice/bplus-xngllamasearch 
